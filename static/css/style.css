@@ -1,0 +1,300 @@
+/* 
+font-family: 'Jost', sans-serif;
+font-family: 'Mukta', sans-serif;
+font-family: 'Pacifico', cursive;
+font-family: 'Reem Kufi Fun', sans-serif;
+font-family: 'Roboto', sans-serif;
+*/
+
+body {
+    font-family: 'Mukta', sans-serif;
+    font-weight: 500;
+
+    min-height: 100vh;
+    background-image: linear-gradient(to bottom right, rgb(0, 123, 255), rgb(236, 34, 236));
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow-x: hidden;
+}
+#navigation-bar {
+    z-index: 1000;
+}
+.navbar {
+    font-family: 'Jost', sans-serif;
+
+    padding: 7px 0;
+    background-color: rgba(0, 0, 0, 0.5);
+
+}
+.navbar-brand {
+    font-family: 'Pacifico', cursive;
+    text-shadow: 1px 1px black;
+    font-size: 1.8rem;
+}
+.navbar-text {
+    font-family: 'Mukta', sans-serif;    font-weight: lighter;
+    font-size: calc(12px + 1vw);
+}
+
+.dropdown-menu {
+    left: auto !important;
+    right: 0;
+    box-shadow: -5px 5px 30px rgba(0, 0, 0, 0.5);
+}
+.dropdown-toggle::after {
+    position: fixed;
+    visibility: hidden;
+}
+.dropdown-toggle {
+    height: 40px;
+    width: 40px;
+    font-weight: 700;
+    border-radius: 50%;
+    text-align: center;
+    background-image: linear-gradient(to bottom right, orange, yellowgreen);
+    color: black;    
+}
+.dropdown-toggle:hover {
+    color:rgb(57, 57, 57);  
+    box-shadow: 0 1px 10px rgba(255, 255, 255, 0.659);
+}
+.logout:hover {
+    font-weight: 600;
+    color: red;
+}
+.content {
+    height: 100%;
+    padding: 7%;
+}
+.col-12 {
+    margin: 10px 0;
+}
+.content-card {
+    background-color: white;
+    border-radius: 20px;
+    padding: 5px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+}
+.todo {
+    background-image: linear-gradient(to bottom, red, orange);
+}
+.todo-title {
+    text-align: center;
+}
+.doing {
+    background-image: linear-gradient(to bottom, orange, yellow);
+}
+.done {
+    background-image: linear-gradient(to bottom, yellowgreen, green);
+}
+.card-border {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    border: 2px solid;
+    padding: 5px;
+}
+input.checkbox {
+    height: 20px;
+    width: 20px;
+}
+.todo-item {
+    font-family: 'Jost', sans-serif;
+    font-size: 1.3rem;
+    margin-right: 7px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.todo-item .col1 {
+    display: inline-block;
+    width: 10%;
+}
+.todo-item .col2{
+    display: inline-block;
+    line-height: 25px;
+    width: 74%;
+}
+.todo-item .col2 label{
+    display: inline;
+}
+.todo-item .col3 {
+    text-align: right;
+    display: inline-block;
+    width: 16%;
+}
+.todo-item .col3 a {
+    padding: 0 2px;
+}
+.add-todo {
+    font-size: 1.3rem;
+    left: 110px;
+    position: relative;
+    text-decoration: none;
+}
+.doing-item {
+    font-family: 'Jost', sans-serif;
+    font-size: 1.3rem;
+    margin-right: 7px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.doing-item .col1 {
+    display: inline-block;
+    width: 10%;
+}
+.doing-item .col2{
+    display: inline-block;
+    line-height: 25px;
+    width:80%;
+}
+.doing-item .col2 label{
+    display: inline;
+}
+.doing-item .col3 {
+    text-align: right;
+    display: inline-block;
+    width: 10%;
+}
+.doing-item .col3 a {
+    padding: 0 2px;
+}
+.done-item {
+    font-family: 'Jost', sans-serif;
+    font-size: 1.3rem;
+    margin-right: 7px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.done-item .col2{
+    display: inline-block;
+    line-height: 25px;
+    width:90%;
+}
+.done-item .col2 label{
+    display: inline;
+}
+.done-item .col3 {
+    text-align: right;
+    display: inline-block;
+    width: 10%;
+}
+.done-item .col3 a {
+    padding: 0 2px;
+}
+.item-done {
+    color: rgba(0, 255, 0, 1)
+}
+.item-done:hover {
+    color: green;
+}
+.item-delete {
+    color: rgba(255, 0, 0, 0.4)
+}
+.item-delete:hover {
+    color: red;
+}
+.item-doing {
+    color: rgba(255, 255, 0, 0.5);
+}
+.item-doing:hover {
+    color: yellow;
+}
+@media only screen and (min-width: 922px) {
+    body {
+        height: 100vh; 
+    }
+    .content {
+        padding: 5%;
+    }
+    hr {
+        margin-bottom: 0;
+    }
+    .content-list {
+        padding-top: 10px;
+        height: 45vh;
+        overflow-y: scroll;
+        margin: 0 2px 10px 10px;
+    }
+      
+}
+.open {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 3px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    width: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10%;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+.toggle-section {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+}
+
+.off {
+    visibility: hidden;
+}
+.toggle-section {
+    overflow: hidden;
+    padding: 5% 15%;
+    backdrop-filter: blur(5px);
+}
+.toggle-section .form-content {
+    margin-top: 40px;
+    color: aliceblue;
+}
+.toggle-section hr {
+    background-color: white;
+    height: 4px;
+}
+.toggle-section h3{
+    color: aliceblue;
+    font-size: 3rem;
+}
+.toggle-section .btn{
+    margin: 6px 0;
+    background-color: aliceblue;
+}
+.toggle-section .btn:hover{
+    background-color: rgb(207, 207, 207)
+}
+@media only screen and (min-width: 777px) {
+    .toggle-section .form-content {
+        margin: 20px;
+        padding: 20px;
+        border-radius: 20px;
+
+    }
+    #new-todo-target {
+        padding: 0 15%;
+    }
+}

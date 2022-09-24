@@ -1,0 +1,259 @@
+{% import "bootstrap/wtf.html" as wtf %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+
+    <!-- CSS -->
+    <link
+      href="{{ url_for('static', filename='css/style.css') }}"
+      rel="stylesheet"
+    />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost&family=Mukta&family=Pacifico&family=Reem+Kufi+Fun&family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icon Kit -->
+    <script
+      src="https://kit.fontawesome.com/b1cb12db09.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0"
+    />
+
+    <title>TodoS</title>
+  </head>
+
+  <body>
+    <!-- <h1 style="font-family: 'Jost', sans-serif;">Hello world this is Jost</h1>
+    <h1 style="font-family: 'Mukta', sans-serif;">Hello world this is Mukta</h1>
+    <h1 style="font-family: 'Pacifico', cursive;">Hello world this is Pacifico</h1>
+    <h1 style="font-family: 'Reem Kufi Fun', sans-serif;">Hello world this is Reem Kufi Fun</h1>
+    <h1 style="font-family: 'Roboto', sans-serif;">Hello world this is Roboto</h1> -->
+
+    <section id="navigation-bar">
+      <nav class="navbar navbar-dark navbar-expand">
+        <div class="container-fluid">
+          <!-- Title -->
+          <label class="navbar-brand">TodoS</label>
+
+          <!-- to-do Name -->
+          <span class="navbar-text">
+            {% if todo_list == None %}
+              Create a new Todo list -->
+            {% else %}
+            {{ todo.title }}
+            {% endif %}
+          </span>
+
+          <ul class="navbar-nav nav justify-content-end">
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                {{logo}}
+              </a>
+
+              <ul class="dropdown-menu">
+                <li>
+                  <a
+                    id="new-todo"
+                    class="dropdown-item"
+                    href="{{ url_for('new') }}"
+                    >New</a
+                  >
+                </li>
+                <li><a href="{{ url_for('open_todo', todo_id=0)}}" id="open-todo" class="dropdown-item">Open</a></li>
+                <li>
+                  <hr class="dropdown-divider" />
+                </li>
+                <li>
+                  <a class="dropdown-item logout" href="{{ url_for('logout') }}"
+                    >Logout</a
+                  >
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </section>
+
+    <section id="content">
+      <div class="content">
+
+        <div class="row">
+          <div class="col-lg-4 col-12">
+            <div class="content-card todo">
+              <div class="card-border">
+                <h2 class="todo-title">Todo</h2>
+                <hr>
+                <div class="content-list">
+                  {% if todo_list != None %}
+                  {% for todo in todo_list %}
+                  {% if todo.todo_type == "todo" %}
+                  <div class="todo-item">
+                    <div class="col1">
+                      <a class="not-a item-done" href="{{ url_for('done', todo_id=todo.id) }}"><i class="fa-regular fa-square-check"></i></a>
+                    </div>
+                    <div class="col2">
+                      <label>{{ todo.todo }}</label>
+                    </div>
+                    <div class="col3">
+                      <a class="not-a item-delete" href="{{ url_for('delete', todo_id=todo.id) }}">
+                        <i class="fa-regular fa-trash-can"></i></a>
+                      <a class="not-a item-doing" href="{{ url_for('doing', todo_id=todo.id) }}">
+                        <i class="fa-solid fa-angle-right"></i
+                      ></a>
+                    </div>
+                  </div>
+                  {% endif %}
+                  {% endfor %}
+
+                  <a class="add-todo" id="add-todo" href="{{ url_for('add') }}"
+                    ><i class="fa-regular fa-square-plus"></i> Todo</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-12">
+            <div class="content-card doing">
+              <div class="card-border">
+                <h2 class="todo-title">Doing</h2>
+                <hr />
+                <div class="content-list">
+
+                  {% for todo in todo_list %}
+                  {% if todo.todo_type == "doing" %}
+                  <div class="doing-item">
+                    <div class="col1">
+                      <a class="not-a item-done" href="{{ url_for('done', todo_id=todo.id) }}"><i class="fa-regular fa-square-check"></i></a>
+                    </div>
+                    <div class="col2">
+                      <label>{{ todo.todo }}</label>
+                    </div>
+                    <div class="col3">
+                      <a class="not-a item-delete" href="{{ url_for('delete', todo_id=todo.id) }}"
+                        ><i class="fa-regular fa-trash-can"></i
+                      ></a>
+                    </div>
+                  </div>
+                  {% endif %}
+                  {% endfor %}
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-12">
+            <div class="content-card done">
+              <div class="card-border">
+                <h2 class="todo-title">Done</h2>
+                <hr />
+                <div class="content-list">
+
+                  {% for todo in todo_list %}
+                  {% if todo.todo_type == "done" %}
+                  <div class="done-item">
+                    <div class="col2">
+                      <label>{{ todo.todo }}</label>
+                    </div>
+                    <div class="col3">
+                      <a class="not-a item-delete" href="{{ url_for('delete', todo_id=todo.id) }}"
+                        ><i class="fa-regular fa-trash-can"></i
+                      ></a>
+                    </div>
+                  </div>
+                  {% endif %}
+          {% endfor %}
+          {% else %}
+                  <h1>You have no TODOS available.</h1>
+                  <h2>Create a new Todo List <a href="{{ url_for('new') }}">here</a></h2>
+          {% endif %}
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {% if all_todo != None%}
+    <section id="open-todo-target" class="toggle-section">
+      <div class="open-todo-list-form">
+        {% for todo in all_todo %}
+        <a class="open-a-tag" href="{{ url_for('open_todo', todo_id=todo.id) }}"><h2>{{ todo.title }}</h2></a>
+        {% endfor %}
+      </div>
+    </section>
+    {% endif %}
+
+    {% if new_form != None%}
+    <section id="new-todo-target" class="toggle-section">
+      <div class="form-content">
+        <h3>New</h3>
+        <div class="center">
+          <form method="post" action="/new">
+            <div class="form">
+              {{ new_form.hidden_tag() }} {{ wtf.form_field(new_form.title) }}
+              {{ wtf.form_field(new_form.todo_1) }} {{
+              wtf.form_field(new_form.todo_2) }} {{
+              wtf.form_field(new_form.todo_3) }} {{
+              wtf.form_field(new_form.todo_4) }} {{
+              wtf.form_field(new_form.todo_5) }} {{
+              wtf.form_field(new_form.submit) }}
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+    {% endif %} {% if add_form != None%}
+    <section id="add-todo-target" class="toggle-section">
+      <div class="form-content">
+        <h3>Add</h3>
+        <div class="center">
+          <form method="post" action="/add">
+            <div class="form">
+              {{ add_form.hidden_tag() }} {{ wtf.form_field(add_form.todo) }} {{
+              wtf.form_field(add_form.submit) }}
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+    {% endif %}
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+      crossorigin="anonymous"
+    ></script>
+    <!-- <script src="{{ url_for('static', filename='js/index.js') }}"></script> -->
+  </body>
+</html>
