@@ -58,6 +58,7 @@ class TodoList(db.Model):
     todo = db.Column(db.String(250), nullable=False)
     todo_type = db.Column(db.String(5), nullable=False)
 
+db.create_all()
 
 add__form = None
 new__form = None
