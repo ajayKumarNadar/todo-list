@@ -92,7 +92,6 @@ def register():
     form = RegisterForm()
     if form.validate_on_submit():
         if User.query.filter_by(email=form.email.data).first():
-            print(User.query.filter_by(email=form.email.data).first())
             # User already exists
             flash("You've already signed up with that email, log in instead!")
             return redirect(url_for('login'))
@@ -139,7 +138,6 @@ def add():
     add__form = form
     if form.validate_on_submit():
         add__form = None
-        print(form.todo.data)
         new_todo_item = TodoList(user_id=current_user.id, todo_id=active_todo.id, todo_type="todo", todo=form.todo.data)
         db.session.add(new_todo_item)
         db.session.commit()
@@ -190,7 +188,6 @@ def new():
 def open_todo(todo_id):
     global all_todo, active_todo
     if todo_id != "0":
-        print("hello")
         Todo.query.filter_by(active=True, user_id=current_user.id).first().active = False
         db.session.commit()
         active_todo = Todo.query.get(todo_id)
