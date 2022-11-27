@@ -8,11 +8,11 @@ from sqlalchemy.orm import relationship
 import os
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("POSTGRESQL")
+app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///todos.db"
 
 Bootstrap(app)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY", "fehd;jnzjlvnfvdvsd")
+app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
 
 db = SQLAlchemy(app)
 login_manager = LoginManager()
